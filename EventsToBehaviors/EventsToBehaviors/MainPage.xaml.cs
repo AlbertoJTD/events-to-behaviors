@@ -13,6 +13,7 @@ namespace EventsToBehaviors
 		public MainPage()
 		{
 			InitializeComponent();
+			this.BindingContext = new MainPageViewModel();
 		}
 	}
 }

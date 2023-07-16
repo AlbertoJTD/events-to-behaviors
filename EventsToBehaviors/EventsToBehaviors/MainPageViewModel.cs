@@ -22,9 +22,19 @@ namespace EventsToBehaviors
             People.Add(new Person { Name = "Sam", Age = 40 });
 		}
 
-		public ICommand ItemTappedCommand { get; } = new Command(async () =>
+		public ICommand ItemTappedCommand { get; } = new Command(async (item) =>
 		{
-			await App.Current.MainPage.DisplayAlert("Item Tapped", "You have touched an item in the list", "Ok");
+			var person = item as Person;
+
+			if (person != null)
+			{
+				await App.Current.MainPage.DisplayAlert("Item Tapped", person.Name, "Ok");
+			}
+		});
+
+		public ICommand AppearingCommand { get; } = new Command(async () =>
+		{
+			await App.Current.MainPage.DisplayAlert("Appearing", "Hello from AppearingCommand", "Ok");
 		});
 	}
 }

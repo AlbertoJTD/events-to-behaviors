@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventsToBehaviors.MainPage"
              xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack">
+    <ContentPage.Behaviors>
+        <behaviorsPack:EventToCommandBehavior EventName="Appearing"
+                                              Command="{Binding AppearingCommand}"/>
+    </ContentPage.Behaviors>
 
     <StackLayout>
         <Button Text="Click me!"
@@ -13,7 +17,8 @@
         <ListView ItemsSource="{Binding People}">
             <ListView.Behaviors>
                 <behaviorsPack:EventToCommandBehavior EventName="ItemTapped"
-                                                      Command="{Binding ItemTappedCommand}"/>
+                                                      Command="{Binding ItemTappedCommand}"
+                                                      EventArgsPropertyPath="Item"/>
             </ListView.Behaviors>
         </ListView>
     </StackLayout>
